@@ -1,5 +1,5 @@
 import { useRef, useCallback, useState } from "react";
-import produce from "immer";
+import {produce} from "immer"
 
 const App = () => {
   const nextId = useRef(1);
@@ -17,13 +17,19 @@ const App = () => {
       //   ...form,
       //   [name]: [value],
       // });
+      // setForm(
+      //   produce(form, (draft) => {
+      //     draft[name] = value;
+      //   })
+      // );
       setForm(
-        produce(form, (draft) => {
+        produce(draft => {
           draft[name] = value;
-        })
-      );
+          })
+      )
     },
-    [form]
+    // [form]
+    []
   );
 
   // form 등록을 위한 함수
@@ -41,11 +47,16 @@ const App = () => {
       //   ...data,
       //   array: data.array.concat(info),
       // });
+      // setData(
+      //   produce(data, (draft) => {
+      //     draft.array.push(info);
+      //   })
+      // );
       setData(
-        produce(data, (draft) => {
+        produce(draft => {
           draft.array.push(info);
         })
-      );
+      )
 
       //form 초기화
       setForm({
@@ -54,7 +65,7 @@ const App = () => {
       });
       nextId.current += 1;
     },
-    [data, form.name, form.username]
+    [form.name, form.username]
   );
 
   //항목을 삭제하는 함수
@@ -64,16 +75,21 @@ const App = () => {
       //   ...data,
       //   array: data.array.filter((info) => info.id !== id),
       // });
+      // setData(
+      //   produce(data, (draft) => {
+      //     draft.array.splice(
+      //       draft.array.findIndex((info) => info.id === id),
+      //       1
+      //     );
+      //   })
+      // );
       setData(
-        produce(data, (draft) => {
-          draft.array.splice(
-            draft.array.findIndex((info) => info.id === id),
-            1
-          );
+        produce(draft => {
+          draft.array.splice(draft.array.findIndex(info => info.id === id), 1);
         })
-      );
+      )
     },
-    [data]
+    []
   );
 
   return (
