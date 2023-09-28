@@ -880,11 +880,9 @@ var toggleSwitch = function toggleSwitch() {
     type: TOGGLE_SWITCH
   };
 };
-var increase = function increase(difference) {
-  return {
-    type: INCREASE,
-    difference: difference
-  };
+var increase = difference = {
+  type: INCREASE,
+  difference: difference
 };
 var decrease = function decrease() {
   return {
@@ -967,7 +965,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58722" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58651" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
@@ -1112,4 +1110,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/vanilla-redux.e31bb0bc.js.map
+//# sourceMappingURL=/index.js.map
