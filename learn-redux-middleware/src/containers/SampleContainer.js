@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+// import { getPost, getUsers } from "../lib/api";
+import { getPost, getUsers } from "../modules/sample"
 import { connect } from "react-redux";
 import Sample from "../components/Sample";
-import { getPost, getUsers } from "../lib/api";
+
 
 // const { useEffect } = React;
 const SampleContainer = ({
@@ -14,8 +16,15 @@ const SampleContainer = ({
 }) => {
   //클래스 형태 컴포넌트였다면 componentDidMount
   useEffect(() => {
-    getPost(1);
-    getUsers(1);
+    const fn = async () => {
+      try {
+        getPost(1);
+        getUsers(1);
+      } catch (e) {
+        console.log(e) //에러조회
+      }
+    }
+    fn();
   }, [getPost, getUsers]);
   return (
     <Sample
@@ -28,11 +37,11 @@ const SampleContainer = ({
 };
 
 export default connect(
-  ({ sample }) => ({
+  ({ sample, loading }) => ({
     post: sample.post,
     users: sample.users,
-    loadingPost: sample.loading.GET_POST,
-    loadingUsers: sample.loading.GET_USERS,
+    loadingPost: loading['samole/GET_POST'],
+    loadingUsers: loading['sample/GET_USERS']
   }),
   {
     getPost,
